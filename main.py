@@ -35,7 +35,6 @@ def load_data(path):
     return df
 
 
-@st.cache_data
 def parse_age_columns(columns):
     """컬럼명에서 성별/연령 추출: 2026년06월_계_0세, 2026년06월_남_10세 등"""
     pattern = re.compile(r"_(계|남|여)_(\d+|100세 이상)세?$")
@@ -51,7 +50,7 @@ def parse_age_columns(columns):
 
 
 df = load_data(DATA_PATH)
-age_cols = parse_age_columns(df.columns)
+age_cols = parse_age_columns(list(df.columns))
 
 # -----------------------------
 # 사이드바 - 지역 선택 (선택 + 직접 입력)
